@@ -16,16 +16,19 @@ extends Node
 @export var SpaceSaw : PackedScene
 @export var Curver : PackedScene
 @export var Centipede : PackedScene
+@export var Portal : PackedScene
 
 #enemy starting level values
 var SawStartLvl = 0
 var CurverStartLvl = 3
 var CentipedeStartLvl = 20
+var PortalStartLvl = 5
 
 #enemy triggers
 var SawEnabled = true
 var CurverEnabled = false
 var CentipedeEnabled = false
+var PortalEnabled = false
 
 #base varibles
 var waveTimer = 0
@@ -83,3 +86,6 @@ func _process(delta: float) -> void:
 	if globals.points == CentipedeStartLvl and CentipedeEnabled == false:
 		possibleEnemies.append(Centipede)
 		CentipedeEnabled = true
+	if globals.points == PortalStartLvl and PortalEnabled == false:
+		possibleEnemies.append(Portal)
+		PortalEnabled = true

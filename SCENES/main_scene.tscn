@@ -1,27 +1,27 @@
 [gd_scene load_steps=80 format=3 uid="uid://cd23kuv0xvgef"]
 
-[ext_resource type="Script" path="res://SCRIPTS/globals.gd" id="1_3wbnp"]
+[ext_resource type="Script" uid="uid://c4cyn70ime2gk" path="res://SCRIPTS/globals.gd" id="1_3wbnp"]
 [ext_resource type="Texture2D" uid="uid://cpra55ya4rnv6" path="res://ART/space-background-0.png" id="1_fuoff"]
 [ext_resource type="PackedScene" uid="uid://dbk3nws0u28in" path="res://SCENES/player.tscn" id="1_i5ecy"]
 [ext_resource type="PackedScene" uid="uid://dpoelvlcykdko" path="res://SCENES/enemy_spawner.tscn" id="2_5lb3w"]
 [ext_resource type="Texture2D" uid="uid://dfio0hjptjl8c" path="res://ART/space-background-1.png" id="2_hsfdh"]
 [ext_resource type="Texture2D" uid="uid://ydxypq7p82jn" path="res://ART/space-background-2.png" id="3_lcp26"]
-[ext_resource type="Script" path="res://SCRIPTS/edge.gd" id="4_snnbu"]
+[ext_resource type="Script" uid="uid://doaucbnom1ko0" path="res://SCRIPTS/edge.gd" id="4_snnbu"]
 [ext_resource type="PackedScene" uid="uid://b27ld4psvgp3g" path="res://SCENES/saw_ship.tscn" id="4_y7y62"]
-[ext_resource type="Script" path="res://SCRIPTS/spawner2.0.gd" id="5_6n8f1"]
+[ext_resource type="Script" uid="uid://c30bl1eql5m5c" path="res://SCRIPTS/spawner2.0.gd" id="5_6n8f1"]
 [ext_resource type="Texture2D" uid="uid://ckxp2hqga1t6d" path="res://ART/spaceCursor1.png" id="7_3f3tq"]
 [ext_resource type="Texture2D" uid="uid://dk3qdn8eijj85" path="res://ART/EnergyBar-Sheet.png" id="7_d4cjh"]
-[ext_resource type="Script" path="res://SCRIPTS/cursor_follower.gd" id="7_x4rfa"]
-[ext_resource type="Script" path="res://SCRIPTS/camera_2d.gd" id="8_8vqcg"]
-[ext_resource type="Script" path="res://SCRIPTS/shield_bar.gd" id="8_jeavh"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="8_tpu8o"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_s15ta"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_vkgyi"]
+[ext_resource type="Script" uid="uid://dhi28b20qlwd4" path="res://SCRIPTS/cursor_follower.gd" id="7_x4rfa"]
+[ext_resource type="Script" uid="uid://c1upq2e3uqxmc" path="res://SCRIPTS/camera_2d.gd" id="8_8vqcg"]
+[ext_resource type="Script" uid="uid://bcgogg8lko1x6" path="res://SCRIPTS/shield_bar.gd" id="8_jeavh"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="8_tpu8o"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_s15ta"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_vkgyi"]
 [ext_resource type="Texture2D" uid="uid://bxmuu0kjhy43h" path="res://ART/space-missile-timer-Sheet.png" id="14_5ntbm"]
 [ext_resource type="PackedScene" uid="uid://u6li6qc5u3rt" path="res://SCENES/mini_map.tscn" id="14_cvp5i"]
-[ext_resource type="Script" path="res://SCRIPTS/missile_display.gd" id="14_ld653"]
+[ext_resource type="Script" uid="uid://bx4lvsx32k6qs" path="res://SCRIPTS/missile_display.gd" id="14_ld653"]
 [ext_resource type="PackedScene" uid="uid://b8aluyruw2lrq" path="res://SCENES/missile.tscn" id="18_mn8ru"]
-[ext_resource type="Script" path="res://SCRIPTS/FPS_counter.gd" id="19_jshxk"]
+[ext_resource type="Script" uid="uid://clnufgfkxkp7d" path="res://SCRIPTS/FPS_counter.gd" id="19_jshxk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfmo4"]
 
@@ -416,9 +416,6 @@ animations = [{
 
 [sub_resource type="Resource" id="Resource_hh70g"]
 script = ExtResource("9_s15ta")
-duration = 1.0
-transition = 0
-ease = 2
 
 [node name="Main Scene" type="Node2D"]
 
@@ -753,8 +750,10 @@ spawnEnemies = true
 [node name="EnemySpawner" parent="." instance=ExtResource("2_5lb3w")]
 script = ExtResource("5_6n8f1")
 SpaceSaw = ExtResource("4_y7y62")
+Portal = null
 
 [node name="PlayerCamera2D" type="Camera2D" parent="."]
+position = Vector2(74, -59)
 zoom = Vector2(0.75, 0.75)
 script = ExtResource("8_8vqcg")
 
@@ -764,6 +763,7 @@ process_physics_priority = 300
 script = ExtResource("9_vkgyi")
 
 [node name="player" parent="." instance=ExtResource("1_i5ecy")]
+position = Vector2(74, -59)
 missile = ExtResource("18_mn8ru")
 currentAbility = "missile"
 
@@ -831,6 +831,8 @@ offset_bottom = 23.0
 script = ExtResource("19_jshxk")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(74, -59)
 script = ExtResource("8_tpu8o")
 follow_mode = 1
 follow_target = NodePath("../player")
